@@ -19,13 +19,13 @@
     <alias name="dataSource-${Globals.DbType}" alias="dataSource" />
     <alias name="dataSource-${Globals.DbType}" alias="egov.dataSource" />
     
+    <!-- jndi 방식 -->
     <bean id="dataSource-mysql" class="org.springframework.jndi.JndiObjectFactoryBean">
     <property name="jndiName" value="java:comp/env/jdbc/homepageDB"/>
     
     </bean>
-    
-    	 
- 	<!-- mysql -->
+       	 
+ 	<!-- mysql --> <!-- 소스방식 -->
   <!--   <bean id="dataSource-mysql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${Globals.DriverClassName}"/>
         <property name="url" value="${Globals.Url}" />
