@@ -26,6 +26,7 @@
     <!--
     <Manager pathname="" />
     -->
+    <!--jndi 방식 -->
     <Resource name="jdbc/homepageDB" auth="Container" type="javax.sql.DataSource"
     		  driverClassName="com.mysql.jdbc.Driver"
     		  url="jdbc:mysql://localhost:3306/homepage2023_db"
