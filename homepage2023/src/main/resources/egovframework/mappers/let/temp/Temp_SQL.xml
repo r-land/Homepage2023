@@ -30,4 +30,17 @@ INSERT INTO lettemp (
 	TEMP_VAL
 ) VALUES (#{tempVal})
 </insert>
+
+<update id="updateTemp" parameterType="egovframework.let.temp.service.TempVO">
+UPDATE lettemp SET
+	TEMP_VAL = #{tempVal}
+	, TEMP_ID = #{tempId}
+WHERE TEMP_ID = #{prevTempId}
+</update>
+
+<delete id="deleteTemp" parameterType="egovframework.let.temp.service.TempVO">
+DELETE FROM lettemp
+WHERE TEMP_ID = #{tempId}
+</delete>
+
 </mapper>

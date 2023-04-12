@@ -14,15 +14,18 @@
 <c:choose>
 	<c:when test ="${not empty result.tempId }">
 		<c:set var="actionUrl" value="/temp/update.do"/>
-		</c:when>
-		<c:otherwise>
+	</c:when>
+	<c:otherwise>
 			<c:set var="actionUrl" value="/temp/insert.do"/>
-		</c:otherwise>
-	</c:choose>
+	</c:otherwise>
+</c:choose>
 	
 	<!-- <form action ="/temp/insert.do" method="post" name="tempVO"> -->
 	<form action="${actionUrl}" method="post" name="tempVO">
-		<input type="hidden" name="tempId" value="${result.tempId}"/>
+		<%-- <input type="hidden" name="tempId" value="${result.tempId}"/> --%>
+		<input type="hidden" name="prevTempId" value="${result.tempId}"/>
+		<label for="tempId">id 정보 :</label>
+		<input type = "text" id="tempId" name="tempId" value="${result.tempId}"/>
 		<label for="tempVal">값 정보 :</label>
 		<input type = "text" id="tempVal" name="tempVal" value="${result.tempVal}"/>
 		<br/>
