@@ -23,6 +23,13 @@ SELECT
 	, TEMP_VAL 
 	FROM lettemp3
 	ORDER BY TEMP_ID DESC
+	LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+</select>	
+
+<select id ="selectTempListCnt" resultType="java.lang.Integer">
+SELECT
+	COUNT(*) CNT
+	FROM lettemp3
 </select>	
 
 <insert id="insertTemp" parameterType="egovframework.let.temp3.service.Temp3VO">

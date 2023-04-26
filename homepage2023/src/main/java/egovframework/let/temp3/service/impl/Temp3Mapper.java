@@ -9,11 +9,14 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Mapper("temp3Mapper")
 public interface Temp3Mapper {
-	
- Temp3VO selectTemp(Temp3VO vo) throws Exception ;
+	//임시데이터 가져오기
+    Temp3VO selectTemp(Temp3VO vo) throws Exception ;
 	
 	//임시데이터목록가져오기
 	List<EgovMap> selectTempList(Temp3VO vo) throws Exception;
+	
+	//임시데이터 목록 수
+	int selectTempListCnt(Temp3VO vo) throws Exception;
 	
 	//임시데이터 등록
 	void insertTemp(Temp3VO vo) throws Exception;

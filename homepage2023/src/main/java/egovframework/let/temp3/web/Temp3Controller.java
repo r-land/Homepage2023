@@ -15,6 +15,7 @@ import egovframework.let.temp3.service.Temp3Service;
 import egovframework.let.temp3.service.Temp3VO;
 import egovframework.let.utl.fcc.service.EgovStringUtil;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class Temp3Controller {
@@ -32,6 +33,21 @@ public class Temp3Controller {
 	//임시데이터 목록 가져오기
 	@RequestMapping(value= "/temp3/selectList.do")
 	public String selectList(Temp3VO tempVO, HttpServletRequest request, ModelMap model) throws Exception{
+		PaginationInfo paginationInfo = new PaginationInfo();
+		
+		paginationInfo.setCurrentPageNo(tempVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(tempVO.getPageUnit());
+		paginationInfo.setPageSize(tempVO.getPageSize());
+		
+		tempVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		tempVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		tempVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		int totCnt = temp3Service.selectTempListCnt(tempVO);
+		
+		paginationInfo.setTotalRecordCount(totCnt);
+		model.addAttribute("paginationInfo",paginationInfo);
+		
 		List<EgovMap> resultList = temp3Service.selectTempList(tempVO);
 		model.addAttribute("resultList", resultList);
 		

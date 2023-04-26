@@ -11,7 +11,10 @@ public interface Temp3Service {
 	
 	//임시데이터목록가져오기
 	public List<EgovMap> selectTempList(Temp3VO vo) throws Exception;
-
+	
+	//임시데이터 목록 수
+	public int selectTempListCnt(Temp3VO vo) throws Exception;
+	
 	//임시데이터 등록하기
 	public String insertTemp(Temp3VO vo) throws Exception;
 	

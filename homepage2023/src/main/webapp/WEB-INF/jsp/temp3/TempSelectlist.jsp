@@ -13,6 +13,8 @@
 tabel{border-collapse: collapse;}
 th{font-weight:bold;}
 th, td{padding:5px;border:1px solid #000;}
+a{text-decoration:none;
+	text-decoration-color:black;}
 </style>
 </head>
 <body>
@@ -37,6 +39,15 @@ th, td{padding:5px;border:1px solid #000;}
 	</c:forEach>
 </tbody>
 </table>
+
+<div id ="paging_div">
+	<ul class ="paging_align">
+		<c:url var="pageUrl" value="/temp3/selectList.do?"/>
+		<c:set var="pagingParam"><c:out value="${pageUrl}"/></c:set>
+		<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="${pagingParam}"/>
+	</ul>
+</div>
+
 <button type="button" id="btn-reg" data-href="/temp3/tempRegist.do">등록하기</button>
 <script>
 $(document).ready(function(){

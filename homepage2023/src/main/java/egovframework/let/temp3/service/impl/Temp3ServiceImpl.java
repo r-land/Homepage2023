@@ -43,11 +43,16 @@ public class Temp3ServiceImpl extends EgovAbstractServiceImpl implements Temp3Se
 	public List<EgovMap> selectTempList(Temp3VO vo) throws Exception {
 		return temp3Mapper.selectTempList(vo);
 	}
+	
+	//임시데이터 목록 수 
+	public int selectTempListCnt(Temp3VO vo) throws Exception {
+		return temp3Mapper.selectTempListCnt(vo);
+	}
+	
 	//임시데이터 등록하기
 	public String insertTemp(Temp3VO vo) throws Exception {
 		String id = idgenService.getNextStringId();
 		vo.setTempId(id);
-		
 		temp3Mapper.insertTemp(vo);
 		return id;
 	}
