@@ -20,7 +20,7 @@
 	</c:otherwise>
 </c:choose>
 	
-	<!-- <form action ="/temp3/insert.do" method="post" name="tempVO"> -->
+	<!-- <form action ="/temp3/insert.do" method="post" name="temp<VO"> -->
 	<form action="${actionUrl}" method="post" name="tempVO">
 		<%-- <input type="hidden" name="tempId" value="${result.tempId}"/> --%>
 		<input type="hidden" name="prevTempId" value="${result.tempId}"/>

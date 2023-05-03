@@ -18,6 +18,7 @@ a{text-decoration:none;
 </style>
 </head>
 <body>
+게시물 총 수 : <c:out value="${paginationInfo.totalRecordCount}"/> 건
 <table>
 	<thead>
 		<tr>
