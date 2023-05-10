@@ -21,13 +21,7 @@ public class CrudController {
 	@Resource(name = "crudService")
 	private CrudService crudService;
 	
-	
-	
-
-	
-	
-	
-	//임시데이터 목록 가져오기
+	//Crud 목록 가져오기
 	@RequestMapping(value= "/crud/selectList.do")
 	public String selectList(CrudVO crudVO, HttpServletRequest request, ModelMap model) throws Exception{
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -50,5 +44,43 @@ public class CrudController {
 		
 		return "crud/CrudSelectList";
 	}
+	//crud 가져오기
+	@RequestMapping(value= "/crud/select.do")
+	public String select(CrudVO crudVO, HttpServletRequest request, ModelMap model) throws Exception{
+		CrudVO result = crudService.selectCrud(crudVO);
+		model.addAttribute("result", result);
+		return "crud/CrudSelect"; 
+		}
+	//Crud 등록/수정
+	@RequestMapping(value= "/crud/crudRegist.do")
+	public String CrudRegist(CrudVO crudVO, HttpServletRequest request, ModelMap model) throws Exception{
+		CrudVO result = new CrudVO();
+		if(!EgovStringUtil.isEmpty(crudVO.getCrudId())) {
+			result = crudService.selectCrud(crudVO); 
+			}
+		model.addAttribute("result",result);
+		
+		return "crud/CrudRegist"; 	
+		}
 	
+	//crud 등록하기
+	@RequestMapping(value= "/crud/insert.do")
+	public String insert(CrudVO crudVO, HttpServletRequest request) throws Exception{
+			crudService.insertCrud(crudVO);
+			return "forward:/crud/selectList.do"; 		
+			}
+		
+	//crud 수정하기
+	@RequestMapping(value= "/crud/update.do")
+	public String update(CrudVO crudVO, HttpServletRequest request)throws Exception{
+			crudService.updateCrud(crudVO);
+			return "forward:/crud/selectList.do";
+		}
+	//crud 삭제하기
+	@RequestMapping(value= "/crud/delete.do")
+	public String delete(CrudVO crudVO, HttpServletRequest request)throws Exception{
+				crudService.deleteCrud(crudVO);
+				return "forward:/crud/selectList.do";
+				
+		}
 }
