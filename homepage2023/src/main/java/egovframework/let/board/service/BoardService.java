@@ -14,6 +14,13 @@ public interface BoardService {
 	//BOARD 목록 수
 	public int selectBoardListCnt(BoardVO vo) throws Exception;
 		
-
+	//Board 등록하기
+	public String insertBoard(BoardVO vo) throws Exception;
+	
+	//board상세정보
+	public BoardVO selectBoard(BoardVO vo) throws Exception;
+	
+	//board 삭제
+	public void deleteBoard(BoardVO vo)throws Exception;
 
 }

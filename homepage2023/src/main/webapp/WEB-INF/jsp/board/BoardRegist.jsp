@@ -62,11 +62,11 @@
 					<tr>
 					<th scope="row">비공개여부</th>
 					<td>
-						<label for="noticeAtY">예 :</label>
+						<label for="othbcAtY">예 :</label>
 						<input type="radio" id="othbcAtY" value="Y" name="othbcAt" <c:if test="${result.othbcAt eq 'Y'}">checked="checked"</c:if>/>
 						&nbsp;&nbsp;&nbsp;
-						<label for="noticeAtN">아니오 :</label>
-						<input type="radio" id="othbcAtN value="N" name="othbcAt" <c:if test="${result.othbcAt ne 'Y'}">checked="checked"</c:if>/>
+						<label for="othbcAtN">아니오 :</label>
+						<input type="radio" id="othbcAtN" value="N" name="othbcAt" <c:if test="${result.othbcAt ne 'Y'}">checked="checked"</c:if>/>
 					</td>
 					</tr>
 					<tr>
@@ -110,24 +110,25 @@
 <script>
 $(document).ready(function(){
 	//게시글등록
-	$(".btn-reg").click(function(){
+	$("#btn-reg").click(function(){
 		$("#frm").submit();
 		return false;
 	});
 	//게시글삭제
-	$(".btn-del").click(function(){
+	$("#btn-del").click(function(){
 		if(!confirm("삭제하시겠습니까?")){
 			return false;
 		}
 	});
 });
 
-function regist({
+function regist(){
 	if(!$("#boardSj").val()){
  		alert("제목을 입력해주세요.");
 		$("#boardSj").focus();
 		return false;
 	}
+
 }
 </script>
 
