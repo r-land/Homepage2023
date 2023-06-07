@@ -94,13 +94,14 @@ public class FileMngUtil {
 				file.transferTo(new File(filePath));
 			}
 			fvo = new FileVO();
-			fvo.setFileExtsn(fileExt);
-			fvo.setFileStreCours(storePathString);
-			fvo.setOrignlFileNm(orginFileName);
-			fvo.setStreFileNm(newName);
-			fvo.setAtchFileId(atchFileIdString);
-			fvo.setFileSn(String.valueOf(fileKey));
-			
+		    fvo.setFileExtsn(fileExt);
+		    fvo.setFileStreCours(storePathString);
+		    fvo.setFileMg(Long.toString(size));
+		    fvo.setOrignlFileNm(orginFileName);
+		    fvo.setStreFileNm(newName);
+		    fvo.setAtchFileId(atchFileIdString);
+		    fvo.setFileSn(String.valueOf(fileKey));
+		    
 			result.add(fvo);
 			
 			fileKey++;			
