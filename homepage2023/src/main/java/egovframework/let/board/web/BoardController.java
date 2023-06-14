@@ -21,6 +21,7 @@ import egovframework.let.board.service.BoardService;
 import egovframework.let.board.service.BoardVO;
 import egovframework.let.utl.fcc.service.EgovStringUtil;
 import egovframework.let.utl.fcc.service.FileMngUtil;
+import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -35,6 +36,9 @@ public class BoardController {
 	@Resource(name = "fileMngUtil")
 	private FileMngUtil fileUtil;
 	
+	@Resource(name = "propertiesService")
+	private EgovPropertyService propertyService;
+	
 	
 	//board 목록 가져오기
 		@RequestMapping(value= "/board/selectList.do")
@@ -44,6 +48,12 @@ public class BoardController {
 			//java.util.list
 			List<EgovMap> noticeResultList = boardService.selectBoardList(searchVO);
 			model.addAttribute("noticeResultList", noticeResultList);
+			
+			//이미지게시판일 경우
+			if("IMAGE".equals(searchVO.getBoardType())) {
+				searchVO.setPageUnit(propertyService.getInt("imagePageUnit"));
+				searchVO.setPageSize(propertyService.getInt("imagePageSize"));
+			}
 				
 			PaginationInfo paginationInfo = new PaginationInfo();
 			
