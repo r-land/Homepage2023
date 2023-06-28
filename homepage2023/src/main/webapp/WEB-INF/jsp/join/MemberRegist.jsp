@@ -53,15 +53,22 @@
 			</tr>
 			<tr>
 				<th><strong class="star">*</strong><label for="password">비밀번호</label></th>
-				<td><input type="text" id="password" name="password" required/></td>
+				<td><input type="password" id="password" name="password" required/></td>
 			</tr>
 			<tr>
 				<th><strong class="star">*</strong><label for="password2">비밀번호 확인</label></th>
-				<td><input type="text" id="password" name="password2" required/></td>
+				<td><input type="password" id="password2" required/></td>
 			</tr>
 			<tr>
 				<th><strong class="star">*</strong><label for="passwordHint">비밀번호 힌트</label></th>
-				<td><input type="text" id="passwordHint" name="passwordHint" required/></td>
+				<td>
+					<select id="passwordHint" name="passwordHint" required>
+						<option value="1">취미 생활은?</option>
+						<option value="2">애완견 이름은?</option>
+						<option value="3">취직하고 싶은 곳은?</option>
+						<option value="4">여행가고 싶은 곳은?</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th><strong class="star">*</strong><label for="passwordCnsr">비밀번호 정답</label></th>
@@ -129,10 +136,10 @@ $(document).ready(function(){
 
 //validation 체크
 function regist(){
-	/* if($("#idCheckAt").val() != "Y"){
+	 if($("#idCheckAt").val() != "Y"){
 		alert("아이디 중복 검사를 해주세요.");
 		return false;
-	}else */ if(!$("#emplyrId").val()){
+	}else if(!$("#emplyrId").val()){
 		alert("아이디를 입력해주세요.");
 		return false;
 	}else if(!$("#userNm").val()){
@@ -159,9 +166,9 @@ function regist(){
 		var pw = $("#password").val(),
 			message = "",
 			//대소문자, 특수문자, 숫자는 8자리 이상 정규형
-			passwordRules1 = /^(?=.*[a-zA-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,30}$/,
+			passwordRules1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,30}$/,
 			//대수문자, 숫자는 10자리 이상 정규형
-			passwordRules2 = /^(?=.*[a-zA-z])(?=.*[0-9]).{10,30}$/,
+			passwordRules2 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{10,30}$/,
 			result = false;
 			
 		if(pw.length <10){
