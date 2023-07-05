@@ -1,0 +1,10 @@
+package egovframework.let.member.service;
+
+import egovframework.com.cmm.LoginVO;
+
+public interface MemberService {
+
+	//일반로그인을 처리
+	public LoginVO actionLogin(LoginVO vo) throws Exception;
+	
+}
