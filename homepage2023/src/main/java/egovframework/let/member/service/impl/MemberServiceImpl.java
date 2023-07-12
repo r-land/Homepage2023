@@ -4,39 +4,39 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import egovframework.com.cmm.LoginVO;
-import egovframework.let.join.service.JoinService;
-import egovframework.let.join.service.JoinVO;
-import egovframework.let.login.service.LoginService;
-import egovframework.let.utl.fcc.service.EgovStringUtil;
+import egovframework.let.member.service.MemberService;
+import egovframework.let.member.service.MemberVO;
 import egovframework.let.utl.sim.service.EgovFileScrty;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
-import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
-@Service("egovLoginService")	
-public class MemberServiceImpl extends EgovAbstractServiceImpl implements LoginService {
+@Service("memberService")	
+public class MemberServiceImpl extends EgovAbstractServiceImpl implements MemberService {
 	
-	@Resource(name = "loginMapper")
-	private MemberMapper loginMapper;
+	@Resource(name="memberMapper")
+	private MemberMapper memberMapper;
 	
-	//일반 로그인을 처리한다
-	public LoginVO actionLogin(LoginVO vo) throws Exception {
-		
+	//회원Id찾기
+	public MemberVO findId(MemberVO vo) throws Exception{
+		return memberMapper.findId(vo);
+	}
+	
+	//회원Id찾기
+	public MemberVO findPassword(MemberVO vo) throws Exception{
+		return memberMapper.findPassword(vo);
+	}
+	
+	//회원비밀번호업데이트
+	public void passwordUpdate(MemberVO vo) throws Exception{
 		//입력한 비밀번호를 암호화한다
-		String enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getId());
+		String enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getEmplyrId());
 		vo.setPassword(enpassword);
 		
-		//아이디와 암호화된 비밀번호가 DB와 일치하는지 확인한다.
-		LoginVO loginVO = loginMapper.actionLogin(vo);
-		
-		if (loginVO != null && !loginVO.getId().equals("") && !loginVO.getPassword().equals("")) {
-			return loginVO;
-			
-		}else {
-			loginVO = new LoginVO();
-		}
-		return loginVO;
+		memberMapper.passwordUpdate(vo);
 	}
 	
 	
+	
 }
+	
+	
+
