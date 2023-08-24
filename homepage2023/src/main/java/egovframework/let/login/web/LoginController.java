@@ -32,7 +32,7 @@ public class LoginController {
 		LoginVO resultVO = loginService.actionLogin(loginVO);
 		if(resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("")) {
 			request.getSession().setAttribute("LoginVO", resultVO);
-			return "forward:/board/selectList.do";
+			return "forward:/test/selectList.do";
 			
 		}else {
 			model.addAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login")); //로그인정보가 올바르지않습니다.
