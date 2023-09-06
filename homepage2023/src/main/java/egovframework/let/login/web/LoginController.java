@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.let.login.service.LoginService;
+import egovframework.rte.fdl.string.EgovStringUtil;
 
 @Controller
 public class LoginController {
@@ -29,10 +30,16 @@ public class LoginController {
 	//로그인처리
 	@RequestMapping(value = "/login/actionLogin.do")
 	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model) throws Exception{
+		//sns login
+		if(!EgovStringUtil.isEmpty(loginVO.getLoginType())) {
+			loginVO.setId(loginVO.getLoginType() + "-" + loginVO.getId());
+			loginVO.setPassword("");
+		}
+		
 		LoginVO resultVO = loginService.actionLogin(loginVO);
 		if(resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("")) {
 			request.getSession().setAttribute("LoginVO", resultVO);
-			return "forward:/test/selectList.do";
+			return "forward:/board/selectList.do";
 			
 		}else {
 			model.addAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login")); //로그인정보가 올바르지않습니다.
