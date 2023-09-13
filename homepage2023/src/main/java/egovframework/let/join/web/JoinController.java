@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.let.api.naver.service.NaverLoginService;
 import egovframework.let.join.service.JoinService;
 import egovframework.let.join.service.JoinVO;
 import egovframework.rte.fdl.string.EgovStringUtil;
@@ -26,6 +27,9 @@ public class JoinController {
 	@Resource(name = "egovMessageSource")
 	EgovMessageSource egovMessageSource;
 	
+	@Resource(name = "naverLoginService")
+	private NaverLoginService naverLoginService;
+	
 	//약관동의 
 	@RequestMapping(value = "/join/siteUseAgree.do")
 	public String siteUseAgree(@ModelAttribute("searchVO") JoinVO vo, HttpServletRequest request, 
@@ -37,6 +41,13 @@ public class JoinController {
 	@RequestMapping(value = "/join/memberType.do")
 	public String memberType(@ModelAttribute("searchVO") JoinVO vo, HttpServletRequest request, 
 		ModelMap model, HttpSession session) throws Exception{
+		
+		//naver
+		String domain = request.getServerName();
+		String port = Integer.toString(request.getServerPort());
+		String naverAuthUrl = naverLoginService.getAuthorizationUrl(session, domain, port);
+		model.addAttribute("naverAuthUrl", naverAuthUrl);
+		
 		return "join/MemberType";
 	}
 	
