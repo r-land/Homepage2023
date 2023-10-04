@@ -46,7 +46,6 @@
 								<a class="btn-naver" href="${naverAuthUrl}" data-type="login">
 									<img src="/asset/front/images/common/btn-naver.png" width="180" alt="네이버 로그인 버튼"/>
 								</a>
-								
 							</div>
 						</fieldset>
 					</form>
